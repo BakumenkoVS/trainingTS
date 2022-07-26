@@ -1,0 +1,12 @@
+.outlined{
+    border: 1px red solid;
+    background-color: white;
+    border-radius: 50%;
+    margin-top: 40px;
+}
+
+.primary {
+    background-color: bisque;
+    margin-top: 40px;
+    border: 0;
+}
