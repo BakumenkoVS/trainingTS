@@ -2,6 +2,7 @@ import { log } from "console";
 import React from "react";
 import "./App.css";
 import Button, { ButtonVariant } from "./components/Button/Button";
+import Input from "./components/Input/Input";
 
 const App = () => {
    return (
@@ -24,6 +25,9 @@ const App = () => {
             onClick={() => console.log("Кнопка 2")}
             loading={false}
          />
+         <Input value="имя" onChange={() => console.log(1)} placeholder='привет'>
+            <label>Привет</label>
+         </Input>
       </div>
    );
 };
