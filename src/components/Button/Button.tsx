@@ -1,41 +1,34 @@
 import React, { FC } from "react";
 import Preloader from "../Preloader/Preloader";
 import "./Button.css";
+import { ButtonProps } from "./Button.types";
 
-export enum ButtonVariant {
-   outlined = "outlined",
-   primary = "primary",
-}
 
-interface ButtonProps {
-   width?: string;
-   height?: string;
-   name: string;
-   type: "submit" | "button";
-   variant: ButtonVariant;
-   onClick: () => void;
-   loading: boolean;
-}
+
 
 const Button: FC<ButtonProps> = ({
    name,
    type,
-   variant,
    width,
    height,
    onClick,
    loading,
+   children,
+   design,
 }) => {
    return (
       <button
          style={{ width, height }}
-         className={variant}
+         className={design}
          type={type}
          onClick={onClick}
       >
-         {loading ? <Preloader /> :  name }
+         {children}
+         {loading ? <Preloader /> : name}
       </button>
    );
 };
+
+Button.defaultProps = { type: "button", loading: false, name: "Кнопка22" };
 
 export default Button;
