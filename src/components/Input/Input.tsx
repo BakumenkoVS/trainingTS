@@ -1,17 +1,19 @@
 import React, { FC } from "react";
-import './Input.css'
-interface InputProps {
-   value: string;
-   onChange: () => void;
-   children?: React.ReactChild | React.ReactNode;
-   placeholder: string;
-}
+import "./Input.css";
+import { InputProps } from './Input.types';
 
-const Input: FC<InputProps> = ({ value, onChange, children, placeholder }) => {
+
+
+const Input: FC<InputProps> = ({ value, onChange, placeholder, label }) => {
    return (
       <>
-         <input value={value} onChange={onChange} placeholder={placeholder} className='input' />
-         {children}
+         <input
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+            className="input"
+         />
+         <label>{label}</label>
       </>
    );
 };
