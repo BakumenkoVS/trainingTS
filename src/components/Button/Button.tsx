@@ -3,9 +3,6 @@ import Preloader from "../Preloader/Preloader";
 import "./Button.css";
 import { ButtonProps } from "./Button.types";
 
-
-
-
 const Button: FC<ButtonProps> = ({
    name,
    type,
@@ -17,14 +14,8 @@ const Button: FC<ButtonProps> = ({
    design,
 }) => {
    return (
-      <button
-         style={{ width, height }}
-         className={design}
-         type={type}
-         onClick={onClick}
-      >
-         {children}
-         {loading ? <Preloader /> : name}
+      <button className={design} type={type} onClick={onClick} name={name}>
+         {loading ? <Preloader /> : children}
       </button>
    );
 };

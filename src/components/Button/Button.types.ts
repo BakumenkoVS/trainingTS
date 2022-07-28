@@ -8,5 +8,3 @@ export interface ButtonProps {
    children?: React.ReactNode;
    design: "outlined" | "primary";
 }
-
-
