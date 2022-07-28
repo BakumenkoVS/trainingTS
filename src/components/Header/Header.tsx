@@ -16,7 +16,7 @@ const Header: FC = () => {
             alt="Главный логотип"
             className="header__main_logo"
          />
-         <div className="header__account_ifo">
+         <div className="header__account_info">
             <p className="header__account_number">+7 800 855 85 85</p>
             <img src={account_logo} alt="Логотип аккаунта" />
          </div>
