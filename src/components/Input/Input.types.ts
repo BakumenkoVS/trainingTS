@@ -4,4 +4,5 @@ export interface InputProps {
    children?: React.ReactNode;
    placeholder?: string;
    label?: string;
+   img?: string;
 }
