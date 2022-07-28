@@ -5,11 +5,9 @@ import { ButtonProps } from "./Button.types";
 
 const Button: FC<ButtonProps> = ({
    name,
-   type,
-   width,
-   height,
+   type = 'submit',
    onClick,
-   loading,
+   loading ='false',
    children,
    design,
 }) => {

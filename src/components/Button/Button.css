@@ -6,7 +6,8 @@
 }
 
 .primary {
-   margin-top: 40px;
+   margin: 0;
+   padding: 0;
    width: 200px;
    height: 60px;
    border: 0;
