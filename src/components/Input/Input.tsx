@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import "./Input.css";
-import { InputProps } from './Input.types';
-
-
+import { InputProps } from "./Input.types";
 
 const Input: FC<InputProps> = ({ value, onChange, placeholder, label }) => {
    return (
