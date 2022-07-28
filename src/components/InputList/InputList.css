@@ -1,0 +1,16 @@
+.InputList {
+    box-sizing: border-box;
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+   min-height: 109px;
+   border-top: 1px solid rgba(0, 0, 0, 0.2);
+   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+   padding: 0 240px;
+}
+
+.button__container {
+    padding: 25px 40px;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
