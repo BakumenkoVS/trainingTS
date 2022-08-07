@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import Preloader from "../Preloader/Preloader";
 import "./Button.css";
 import { ButtonProps } from "./Button.types";
 
@@ -13,7 +12,7 @@ const Button: FC<ButtonProps> = ({
 }) => {
    return (
       <button className={design} type={type} onClick={onClick} name={name}>
-         {loading ? <Preloader /> : children}
+         { children}
       </button>
    );
 };
