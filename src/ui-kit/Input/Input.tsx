@@ -1,9 +1,8 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, SetStateAction, useEffect, useState } from "react";
 import "./Input.css";
 import { InputProps } from "./Input.types";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { deflate } from "zlib";
 
 const Input: FC<InputProps> = ({
    value,
@@ -15,23 +14,28 @@ const Input: FC<InputProps> = ({
    isDate,
 }) => {
    const [visible, setVisible] = useState(false);
-   const [date, setDate] = useState([new Date()]);
+   const [date, setDate] = useState(new Date());
 
-   const x = () => {
-      if (date.length > 1) {
-         return date.map((i) => {
-            return Intl.DateTimeFormat().format(i).toString();
-         });
-      } else {
-         return Intl.DateTimeFormat().format(date[1]).toString();
-      }
-   };
 
-   const y = x();
+     const Change = (date:SetStateAction<Date>) => {
+      setDate(date)
+      // const x = () => {
+      //    if ([date].length > 1) {
+      //       return [date].map((i) => {
+      //          return Intl.DateTimeFormat().format(i).toString();
+      //       });
+      //    } else {
+      //       return Intl.DateTimeFormat().format(date).toString();
+      //    }
+      // };
+     }   
+   
+
+   //const y = x();
 
    const calendar = visible ? (
       <div className="zz">
-         <Calendar onChange={setDate} selectRange={true} returnValue="range" />
+         <Calendar onChange={Change} selectRange={true}   value={date}/>
       </div>
    ) : (
       ""
@@ -47,7 +51,7 @@ const Input: FC<InputProps> = ({
          <div className="InputContainer">
             <label className="Input__label">{label}</label>
             <input
-               value={isDate ? y : value}
+               value={value}
                type={type}
                onChange={onChange}
                placeholder="введите данные"
