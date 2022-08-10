@@ -12,30 +12,42 @@ const Input: FC<InputProps> = ({
    img,
    type,
    isDate,
+   setInputValue,
+   setNumberOfDays,
 }) => {
    const [visible, setVisible] = useState(false);
-   const [date, setDate] = useState(new Date());
+   const [date, setDate] = useState<Date | Date[]>(new Date());
 
+   const Change = (value: Date[]) => {
+      function getNumberOfDays(value: Date[]) {
+         // One day in milliseconds
+         const oneDay = 1000 * 60 * 60 * 24;
 
-     const Change = (date:SetStateAction<Date>) => {
-      setDate(date)
-      // const x = () => {
-      //    if ([date].length > 1) {
-      //       return [date].map((i) => {
-      //          return Intl.DateTimeFormat().format(i).toString();
-      //       });
-      //    } else {
-      //       return Intl.DateTimeFormat().format(date).toString();
-      //    }
-      // };
-     }   
+         // Calculating the time difference between two dates
+         const diffInTime = value[1].getTime() - value[0].getTime();
+
+         // Calculating the no. of days between two dates
+         const diffInDays = Math.round(diffInTime / oneDay);
+
+         return diffInDays;
+      }
+
+      setNumberOfDays?.(getNumberOfDays(value));
+
+      setDate(value);
+      console.log(value);
+      const dateInputsValues = value.map((d: Date) => {
+         return Intl.DateTimeFormat().format(d).toString();
+      });
+      setInputValue?.(dateInputsValues);
    
+   };
 
    //const y = x();
 
    const calendar = visible ? (
       <div className="zz">
-         <Calendar onChange={Change} selectRange={true}   value={date}/>
+         <Calendar onChange={Change} selectRange={true} value={date} />
       </div>
    ) : (
       ""
