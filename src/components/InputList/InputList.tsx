@@ -6,6 +6,7 @@ import calendar from "../../images/calendar.svg";
 import moon from "../../images/moon.svg";
 import user from "../../images/user.svg";
 import Button from "../../ui-kit/Button/Button";
+import DatePicker from "../DatePicker/DatePicker";
 
 const InputList: FC = () => {
    const [city, setCity] = useState<string>("");
@@ -18,7 +19,7 @@ const InputList: FC = () => {
       console.log(city);
       console.log(inputValue);
       console.log(numberOfDays);
-      console.log(guests)
+      console.log(guests);
    }
 
    const x = () => {
@@ -45,13 +46,10 @@ const InputList: FC = () => {
             isDate={false}
             onChange={handleChangeCity}
          />
-         <Input
-            img={calendar}
-            label="Departure period"
-            value={x()}
-            isDate={true}
+         <DatePicker
             setInputValue={setInputValue}
             setNumberOfDays={setNumberOfDays}
+            inputValue={inputValue}
          />
          <Input
             img={moon}

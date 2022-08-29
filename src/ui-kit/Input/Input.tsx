@@ -14,48 +14,49 @@ const Input: FC<InputProps> = ({
    isDate,
    setInputValue,
    setNumberOfDays,
+   setVisible,
+   readonly,
 }) => {
-   const [visible, setVisible] = useState(false);
-   const [date, setDate] = useState<Date | Date[]>(new Date());
+   // const [date, setDate] = useState<Date | Date[]>(new Date());
 
-   const Change = (value: Date[]) => {
-      function getNumberOfDays(value: Date[]) {
-         // One day in milliseconds
-         const oneDay = 1000 * 60 * 60 * 24;
+   // const Change = (value: Date[]) => {
+   //    function getNumberOfDays(value: Date[]) {
+   //       // One day in milliseconds
+   //       const oneDay = 1000 * 60 * 60 * 24;
 
-         // Calculating the time difference between two dates
-         const diffInTime = value[1].getTime() - value[0].getTime();
+   //       // Calculating the time difference between two dates
+   //       const diffInTime = value[1].getTime() - value[0].getTime();
 
-         // Calculating the no. of days between two dates
-         const diffInDays = Math.round(diffInTime / oneDay);
+   //       // Calculating the no. of days between two dates
+   //       const diffInDays = Math.round(diffInTime / oneDay);
 
-         return diffInDays;
-      }
+   //       return diffInDays;
+   //    }
 
-      setNumberOfDays?.(getNumberOfDays(value));
+   //    setNumberOfDays?.(getNumberOfDays(value));
 
-      setDate(value);
-      console.log(value);
-      const dateInputsValues = value.map((d: Date) => {
-         return Intl.DateTimeFormat().format(d).toString();
-      });
-      setInputValue?.(dateInputsValues);
+   //    setDate(value);
+   //    console.log(value);
+   //    const dateInputsValues = value.map((d: Date) => {
+   //       return Intl.DateTimeFormat().format(d).toString();
+   //    });
+   //    setInputValue?.(dateInputsValues);
    
-   };
+   // };
 
    //const y = x();
 
-   const calendar = visible ? (
-      <div className="zz">
-         <Calendar onChange={Change} selectRange={true} value={date} />
-      </div>
-   ) : (
-      ""
-   );
+   // const calendar = visible ? (
+   //    <div className="zz">
+   //       <Calendar onChange={Change} selectRange={true} value={date} />
+   //    </div>
+   // ) : (
+   //    ""
+   // );
 
-   useEffect(() => {
-      setVisible(false);
-   }, [date]);
+   // useEffect(() => {
+   //    setVisible(false);
+   // }, [date]);
 
    return (
       <section className="InputSection">
@@ -68,10 +69,11 @@ const Input: FC<InputProps> = ({
                onChange={onChange}
                placeholder="введите данные"
                className="input"
-               onFocus={() => setVisible(true)}
+               onFocus={setVisible}
+               readOnly
             />
          </div>
-         {isDate ? calendar : null}
+         {/* {isDate ? calendar : null} */}
       </section>
    );
 };

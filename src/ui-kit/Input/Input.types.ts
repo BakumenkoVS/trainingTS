@@ -9,4 +9,6 @@ export interface InputProps {
    isDate: boolean;
    setInputValue?: (value: string[]) => void;
    setNumberOfDays?: (value: number) => void;
+   setVisible?: (e : React.FocusEvent<HTMLInputElement>) => void;
+   readonly?: string;
 }
