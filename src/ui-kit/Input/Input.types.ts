@@ -1,14 +1,13 @@
-export interface InputProps {
+import React, { HTMLAttributes } from "react";
+
+export interface InputProps extends HTMLAttributes<HTMLInputElement> {
    value?: string | number;
-   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-   children?: React.ReactNode;
-   placeholder?: string;
-   label?: string;
+   onChange?: (e: React.ChangeEvent<HTMLInputElement> ) => void;
+   labels?: string;
    img?: string;
-   type?: string;
    isDate: boolean;
+   type?: string;
    setInputValue?: (value: string[]) => void;
    setNumberOfDays?: (value: number) => void;
-   setVisible?: (e : React.FocusEvent<HTMLInputElement>) => void;
-   readonly?: string;
+   onFocus?: (e : React.FocusEvent<HTMLInputElement>) => void;
 }

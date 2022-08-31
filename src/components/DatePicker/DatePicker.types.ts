@@ -1,5 +1,6 @@
 export interface DatePickerProps {
-   setInputValue?: (value: string[]) => void;
+   onChange?: (value: string[]) => void;
    setNumberOfDays?: (value: number) => void;
-   inputValue?: string[];
+   value?: string[];
+   handleChangeNumberOfDays: (value: Date[]) => void;
 }

@@ -1,8 +1,7 @@
-import React, { FC, FormEvent, useState } from "react";
+import React, { FC, FormEvent, useEffect, useState } from "react";
 import "./InputList.css";
 import Input from "../../ui-kit/Input/Input";
 import mapPin from "../../images/map-pin.svg";
-import calendar from "../../images/calendar.svg";
 import moon from "../../images/moon.svg";
 import user from "../../images/user.svg";
 import Button from "../../ui-kit/Button/Button";
@@ -21,14 +20,20 @@ const InputList: FC = () => {
       console.log(numberOfDays);
       console.log(guests);
    }
+   const handleChangeNumberOfDays = (value: Date[]) => {
+      function getNumberOfDays(value: Date[]) {
+         const oneDay = 1000 * 60 * 60 * 24;
 
-   const x = () => {
-      if (inputValue === undefined) {
-         return "";
-      } else {
-         return `${inputValue[0]} - ${inputValue[1]}`;
+         const diffInTime = value[1].getTime() - value[0].getTime();
+
+         const diffInDays = Math.round(diffInTime / oneDay);
+
+         return diffInDays;
       }
+
+      setNumberOfDays(getNumberOfDays(value));
    };
+
    const handleChangeCity = (e: React.ChangeEvent<HTMLInputElement>) => {
       setCity(e.target.value);
    };
@@ -41,25 +46,26 @@ const InputList: FC = () => {
       <form className="InputList" onSubmit={handleSubmit}>
          <Input
             img={mapPin}
-            label="Departure city"
+            labels="Departure city"
             value={city}
             isDate={false}
             onChange={handleChangeCity}
          />
          <DatePicker
-            setInputValue={setInputValue}
+            handleChangeNumberOfDays={handleChangeNumberOfDays}
+            onChange={setInputValue}
             setNumberOfDays={setNumberOfDays}
-            inputValue={inputValue}
+            value={inputValue}
          />
          <Input
             img={moon}
-            label="Number of nights"
+            labels="Number of nights"
             value={numberOfDays}
             isDate={false}
          />
          <Input
             img={user}
-            label="Number of guests"
+            labels="Number of guests"
             value={guests}
             isDate={false}
             onChange={handleChangeGuests}
