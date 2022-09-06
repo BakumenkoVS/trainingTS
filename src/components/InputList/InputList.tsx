@@ -26,14 +26,11 @@ const InputList: FC = () => {
          const getNumberOfDays = (value: string[]) => {
             const oneDay = 1000 * 60 * 60 * 24;
             const dayOne = value[0].split(".").reverse().join(".");
-            const dayToo = value[1].split(".").reverse().join(".");
+            const dayTwo = value[1].split(".").reverse().join(".");
             const diffInTime =
-               new Date(dayToo).getTime() - new Date(dayOne).getTime();
+               new Date(dayTwo).getTime() - new Date(dayOne).getTime();
 
             const diffInDays = Math.round(diffInTime / oneDay);
-            console.log(value[1], new Date(dayToo));
-            console.log(value[0], new Date(dayToo));
-            console.log(value[0].split(".").reverse().join("."));
             return diffInDays;
          };
 
