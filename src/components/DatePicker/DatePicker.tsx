@@ -8,34 +8,22 @@ const DatePicker: FC<DatePickerProps> = ({
    onChange,
    setNumberOfDays,
    value,
-
-   handleChangeNumberOfDays,
 }) => {
    const [visible, setVisible] = useState<boolean>(false);
    const [date, setDate] = useState<Date | Date[]>(new Date());
 
    const Change = (value: Date[]) => {
-      handleChangeNumberOfDays(value);
-
       setDate(value);
 
       const dateInputsValues = value.map((d: Date) => {
          return Intl.DateTimeFormat().format(d).toString();
       });
-      onChange?.(dateInputsValues);
+      onChange(dateInputsValues);
    };
 
    useEffect(() => {
       setVisible(false);
    }, [date]);
-
-   const x = () => {
-      if (value === undefined) {
-         return "";
-      } else {
-         return `${value[0]} - ${value[1]}`;
-      }
-   };
 
    const focusHandler = (e: React.FocusEvent<HTMLInputElement>) => {
       setVisible(true);
@@ -47,7 +35,7 @@ const DatePicker: FC<DatePickerProps> = ({
             readOnly={true}
             img={calendarImg}
             labels="Departure period"
-            value={x()}
+            value={value.length ? `${value[0]} - ${value[1]}` : ""}
             isDate={true}
             setNumberOfDays={setNumberOfDays}
             onFocus={focusHandler}

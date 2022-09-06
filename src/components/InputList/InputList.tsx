@@ -10,9 +10,9 @@ import DatePicker from "../DatePicker/DatePicker";
 const InputList: FC = () => {
    const [city, setCity] = useState<string>("");
    const [guests, setGuests] = useState<string>("");
-   const [inputValue, setInputValue] = useState<string[]>();
+   const [inputValue, setInputValue] = useState<string[]>([]);
    const [numberOfDays, setNumberOfDays] = useState<number>();
-
+   console.log(inputValue);
    function handleSubmit(e: FormEvent<HTMLFormElement>) {
       e.preventDefault();
       console.log(city);
@@ -20,19 +20,26 @@ const InputList: FC = () => {
       console.log(numberOfDays);
       console.log(guests);
    }
-   const handleChangeNumberOfDays = (value: Date[]) => {
-      function getNumberOfDays(value: Date[]) {
-         const oneDay = 1000 * 60 * 60 * 24;
 
-         const diffInTime = value[1].getTime() - value[0].getTime();
+   useEffect(() => {
+      if (inputValue.length === 2) {
+         const getNumberOfDays = (value: string[]) => {
+            const oneDay = 1000 * 60 * 60 * 24;
+            const dayOne = value[0].split(".").reverse().join(".");
+            const dayToo = value[1].split(".").reverse().join(".");
+            const diffInTime =
+               new Date(dayToo).getTime() - new Date(dayOne).getTime();
 
-         const diffInDays = Math.round(diffInTime / oneDay);
+            const diffInDays = Math.round(diffInTime / oneDay);
+            console.log(value[1], new Date(dayToo));
+            console.log(value[0], new Date(dayToo));
+            console.log(value[0].split(".").reverse().join("."));
+            return diffInDays;
+         };
 
-         return diffInDays;
+         setNumberOfDays(getNumberOfDays(inputValue));
       }
-
-      setNumberOfDays(getNumberOfDays(value));
-   };
+   }, [inputValue]);
 
    const handleChangeCity = (e: React.ChangeEvent<HTMLInputElement>) => {
       setCity(e.target.value);
@@ -52,7 +59,6 @@ const InputList: FC = () => {
             onChange={handleChangeCity}
          />
          <DatePicker
-            handleChangeNumberOfDays={handleChangeNumberOfDays}
             onChange={setInputValue}
             setNumberOfDays={setNumberOfDays}
             value={inputValue}
