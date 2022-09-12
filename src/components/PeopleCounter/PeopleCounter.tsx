@@ -8,21 +8,79 @@ export const PeopleCounter = () => {
    const [buttonIncreaseChildren, setButtonIncreaseChildren] =
       useState<boolean>(true);
    const [buttonReduceChildren, setButtonReduceChildren] =
+      useState<boolean>(false);
+   const [buttonIncreaseAdults, setButtonIncreaseAdults] =
+      useState<boolean>(false);
+   const [buttonReduceAdults, setButtonReduceAdults] = useState<boolean>(false);
+
+   const [buttonIncreaseBabies, setButtonIncreaseBabies] =
       useState<boolean>(true);
+   const [buttonReduceBabies, setButtonReduceBabies] = useState<boolean>(false);
+
+   const [people, setPeople] = useState<number>();
 
    useEffect(() => {
-      if (adults > 0 && adults < 3) {
-         setButtonIncreaseChildren(false);
-      } else {
+      setPeople(adults + children + babies);
+      //Условие при котором если больше 15 все кнопки + диз
+      if (adults + children + babies >= 15) {
          setButtonIncreaseChildren(true);
-      }
-
-      if (children > 0) {
-         setButtonReduceChildren(false);
+         setButtonIncreaseAdults(true);
+         setButtonIncreaseBabies(true);
       } else {
-         setButtonReduceChildren(true);
+         setButtonIncreaseChildren(false);
+         setButtonIncreaseAdults(false);
+         setButtonIncreaseBabies(false);
+         //Если все счетчики 0 то все кнопки - диз
+         if (adults === 0 && children === 0 && babies === 0) {
+            debugger;
+            setButtonReduceChildren(true);
+            setButtonReduceAdults(true);
+            setButtonReduceBabies(true);
+         } else {
+            setButtonReduceAdults(false);
+         }
+         if (adults > 0 && children < 3) {
+            setButtonIncreaseChildren(false);
+         } else {
+            setButtonIncreaseChildren(true);
+         }
+
+         if (adults > 0 && adults === babies) {
+            setButtonReduceAdults(true);
+         }
+
+         if (adults > 1 && children >= 3 && children < 6) {
+            setButtonIncreaseChildren(false);
+         }
+
+         if (adults > 2 && children >= 6 && children < 9) {
+            setButtonIncreaseChildren(false);
+         }
+
+         if (adults > 3 && children >= 9 && children < 12) {
+            setButtonIncreaseChildren(false);
+         }
+
+         if (children > 0) {
+            setButtonReduceChildren(false);
+         } else {
+            setButtonReduceChildren(true);
+         }
+
+         if (babies + 1 <= adults) {
+            setButtonIncreaseBabies(false);
+            setButtonReduceBabies(false);
+            // setButtonReduceAdults(true);
+         } else {
+            setButtonIncreaseBabies(true);
+         }
+
+         if (babies === 0) {
+            debugger;
+            setButtonReduceBabies(true);
+         }
       }
-   }, [adults, children]);
+   }, [adults, children, babies]);
 
    const increaseAdults = () => {
       setAdults(adults + 1);
@@ -48,15 +106,32 @@ export const PeopleCounter = () => {
       setBabies(babies - 1);
    };
 
+   // useEffect(() => {
+   //    if (adults + children + babies <= 15) {
+   //       debugger;
+   //       setButtonIncreaseChildren(false);
+   //       setButtonIncreaseAdults(false);
+   //    }
+   // }, [adults, children, babies]);
+
    return (
       <section>
+         <h1>{people}</h1>
          <div css={styles.box}>
             <h2>Взрослые</h2>
-            <button css={styles.button} onClick={reduceAdults}>
+            <button
+               css={styles.button}
+               onClick={reduceAdults}
+               disabled={buttonReduceAdults}
+            >
                -
             </button>
             <h3>{adults}</h3>
-            <button css={styles.button} onClick={increaseAdults}>
+            <button
+               css={styles.button}
+               onClick={increaseAdults}
+               disabled={buttonIncreaseAdults}
+            >
                +
             </button>
          </div>
@@ -80,11 +155,19 @@ export const PeopleCounter = () => {
          </div>
          <div css={styles.box}>
             <h2>Младенцы</h2>
-            <button css={styles.button} onClick={reduceBabies}>
+            <button
+               css={styles.button}
+               onClick={reduceBabies}
+               disabled={buttonReduceBabies}
+            >
                -
             </button>
             <h3>{babies}</h3>
-            <button css={styles.button} onClick={increaseBabies}>
+            <button
+               css={styles.button}
+               onClick={increaseBabies}
+               disabled={buttonIncreaseBabies}
+            >
                +
             </button>
          </div>

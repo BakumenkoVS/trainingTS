@@ -15,7 +15,7 @@ export const styles = createStyles({
       height: "50px",
       border: "0",
       "&: disabled": {
-         backgroundColor: "black",
+         backgroundColor: "red",
       },
    },
 });
