@@ -30,15 +30,7 @@ export const PeopleCounter = () => {
          setButtonIncreaseChildren(false);
          setButtonIncreaseAdults(false);
          setButtonIncreaseBabies(false);
-         //Если все счетчики 0 то все кнопки - диз
-         if (adults === 0 && children === 0 && babies === 0) {
-            debugger;
-            setButtonReduceChildren(true);
-            setButtonReduceAdults(true);
-            setButtonReduceBabies(true);
-         } else {
-            setButtonReduceAdults(false);
-         }
+
          if (adults > 0 && children < 3) {
             setButtonIncreaseChildren(false);
          } else {
@@ -49,16 +41,24 @@ export const PeopleCounter = () => {
             setButtonReduceAdults(true);
          }
 
-         if (adults > 1 && children >= 3 && children < 6) {
+         if (
+            (adults > 1 && children >= 3 && children < 6) ||
+            (adults > 2 && children >= 6 && children < 9) ||
+            (adults > 3 && children >= 9 && children < 12)
+         ) {
             setButtonIncreaseChildren(false);
          }
 
-         if (adults > 2 && children >= 6 && children < 9) {
-            setButtonIncreaseChildren(false);
-         }
-
-         if (adults > 3 && children >= 9 && children < 12) {
-            setButtonIncreaseChildren(false);
+         if (
+            (adults === 1 && children > 0 && children <= 3) ||
+            (adults === 2 && children > 3 && children <= 6) ||
+            (adults === 3 && children > 6 && children <= 9) ||
+            (adults === 4 && children > 9 && children <= 12)
+         ) {
+            debugger;
+            setButtonReduceAdults(true);
+         } else {
+            setButtonReduceAdults(false);
          }
 
          if (children > 0) {
@@ -67,16 +67,31 @@ export const PeopleCounter = () => {
             setButtonReduceChildren(true);
          }
 
+         if (babies === adults && babies > 0) {
+            setButtonReduceAdults(true);
+         }
+
          if (babies + 1 <= adults) {
             setButtonIncreaseBabies(false);
             setButtonReduceBabies(false);
-            // setButtonReduceAdults(true);
          } else {
             setButtonIncreaseBabies(true);
          }
 
          if (babies === 0) {
+            setButtonReduceBabies(true);
+         } else {
+            setButtonReduceBabies(false);
+         }
+         if (adults > 0 && babies === 0 && children === 0) {
             debugger;
+            setButtonReduceAdults(false);
+         }
+
+         //Если все счетчики 0 то все кнопки - диз
+         if (adults === 0 && children === 0 && babies === 0) {
+            setButtonReduceChildren(true);
+            setButtonReduceAdults(true);
             setButtonReduceBabies(true);
          }
       }
