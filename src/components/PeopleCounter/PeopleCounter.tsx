@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Counter from "../Counter/Counter";
 import { styles } from "./PeopleCounter.styles";
 
 export const PeopleCounter = () => {
@@ -18,6 +19,7 @@ export const PeopleCounter = () => {
    const [buttonReduceBabies, setButtonReduceBabies] = useState<boolean>(false);
 
    const [people, setPeople] = useState<number>();
+   const [x , setX] = useState<number>(0)
 
    useEffect(() => {
       setPeople(adults + children + babies);
@@ -186,6 +188,10 @@ export const PeopleCounter = () => {
                +
             </button>
          </div>
+         <Counter title="Старики" subTitle="Вот так вот" value={x} min={0} max={15} 
+         onChange={(number)=>{setX(number)
+         }}
+         />
       </section>
    );
 };
