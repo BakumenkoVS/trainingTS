@@ -19,11 +19,9 @@ export const PeopleCounter = () => {
    const [buttonReduceBabies, setButtonReduceBabies] = useState<boolean>(false);
 
    const [people, setPeople] = useState<number>();
-   const [x , setX] = useState<number>(0)
 
    useEffect(() => {
       setPeople(adults + children + babies);
-      //Условие при котором если больше 15 все кнопки + диз
       if (adults + children + babies >= 15) {
          setButtonIncreaseChildren(true);
          setButtonIncreaseAdults(true);
@@ -63,12 +61,6 @@ export const PeopleCounter = () => {
             setButtonReduceAdults(false);
          }
 
-         if (children > 0) {
-            setButtonReduceChildren(false);
-         } else {
-            setButtonReduceChildren(true);
-         }
-
          if (babies === adults && babies > 0) {
             setButtonReduceAdults(true);
          }
@@ -80,117 +72,57 @@ export const PeopleCounter = () => {
             setButtonIncreaseBabies(true);
          }
 
-         if (babies === 0) {
-            setButtonReduceBabies(true);
-         } else {
-            setButtonReduceBabies(false);
-         }
          if (adults > 0 && babies === 0 && children === 0) {
-            debugger;
             setButtonReduceAdults(false);
-         }
-
-         //Если все счетчики 0 то все кнопки - диз
-         if (adults === 0 && children === 0 && babies === 0) {
-            setButtonReduceChildren(true);
-            setButtonReduceAdults(true);
-            setButtonReduceBabies(true);
          }
       }
    }, [adults, children, babies]);
 
-   const increaseAdults = () => {
-      setAdults(adults + 1);
-   };
-
-   const reduceAdults = () => {
-      setAdults(adults - 1);
-   };
-
-   const increaseChildren = () => {
-      setChildren(children + 1);
-   };
-
-   const reduceChildren = () => {
-      setChildren(children - 1);
-   };
-
-   const increaseBabies = () => {
-      setBabies(babies + 1);
-   };
-
-   const reduceBabies = () => {
-      setBabies(babies - 1);
-   };
-
-   // useEffect(() => {
-   //    if (adults + children + babies <= 15) {
-   //       debugger;
-   //       setButtonIncreaseChildren(false);
-   //       setButtonIncreaseAdults(false);
-   //    }
-   // }, [adults, children, babies]);
-
    return (
       <section>
          <h1>{people}</h1>
-         <div css={styles.box}>
-            <h2>Взрослые</h2>
-            <button
-               css={styles.button}
-               onClick={reduceAdults}
-               disabled={buttonReduceAdults}
-            >
-               -
-            </button>
-            <h3>{adults}</h3>
-            <button
-               css={styles.button}
-               onClick={increaseAdults}
-               disabled={buttonIncreaseAdults}
-            >
-               +
-            </button>
-         </div>
-         <div css={styles.box}>
-            <h2>Дети</h2>
-            <button
-               css={styles.button}
-               disabled={buttonReduceChildren}
-               onClick={reduceChildren}
-            >
-               -
-            </button>
-            <h3>{children}</h3>
-            <button
-               css={styles.button}
-               disabled={buttonIncreaseChildren}
-               onClick={increaseChildren}
-            >
-               +
-            </button>
-         </div>
-         <div css={styles.box}>
-            <h2>Младенцы</h2>
-            <button
-               css={styles.button}
-               onClick={reduceBabies}
-               disabled={buttonReduceBabies}
-            >
-               -
-            </button>
-            <h3>{babies}</h3>
-            <button
-               css={styles.button}
-               onClick={increaseBabies}
-               disabled={buttonIncreaseBabies}
-            >
-               +
-            </button>
-         </div>
-         <Counter title="Старики" subTitle="Вот так вот" value={x} min={0} max={15} 
-         onChange={(number)=>{setX(number)
-         }}
+
+         <Counter
+            title="Взрослые"
+            subTitle="Старше 12 лет"
+            value={adults}
+            min={0}
+            max={15}
+            onChange={(number) => {
+               setAdults(number);
+            }}
+            buttonIncrease={buttonIncreaseAdults}
+            buttonReduce={buttonReduceAdults}
+            setButtonIncrease={setButtonIncreaseAdults}
+            setButtonReduce={setButtonReduceAdults}
+         />
+         <Counter
+            title="Дети"
+            subTitle="От 2 до 12"
+            value={children}
+            min={0}
+            max={11}
+            onChange={(number) => {
+               setChildren(number);
+            }}
+            buttonIncrease={buttonIncreaseChildren}
+            buttonReduce={buttonReduceChildren}
+            setButtonIncrease={setButtonIncreaseChildren}
+            setButtonReduce={setButtonReduceChildren}
+         />
+         <Counter
+            title="Младенцы"
+            subTitle="Младше 2 лет"
+            value={babies}
+            min={0}
+            max={7}
+            onChange={(number) => {
+               setBabies(number);
+            }}
+            buttonIncrease={buttonIncreaseBabies}
+            buttonReduce={buttonReduceBabies}
+            setButtonIncrease={setButtonIncreaseBabies}
+            setButtonReduce={setButtonReduceBabies}
          />
       </section>
    );
