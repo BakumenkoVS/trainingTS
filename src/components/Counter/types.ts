@@ -5,8 +5,4 @@ export interface CounterProps {
    onChange: (value: number) => void;
    min?: number;
    max?: number;
-   buttonIncrease?: boolean;
-   buttonReduce?: boolean;
-   setButtonReduce?: (value: boolean) => void;
-   setButtonIncrease?: (value: boolean) => void;
 }
