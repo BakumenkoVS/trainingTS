@@ -52,14 +52,6 @@ export const PeopleCounter = () => {
             setMaxChildren(11);
          }
 
-         // if (
-         //    (adults > 1 && children >= 3 && children < 6) ||
-         //    (adults > 2 && children >= 6 && children < 9) ||
-         //    (adults > 3 && children >= 9 && children < 12)
-         // ) {
-         //    setButtonIncreaseChildren(false);
-         // }
-
          if (
             adults === 1 &&
             children > 0 &&
@@ -95,27 +87,11 @@ export const PeopleCounter = () => {
             setMinAdults(4);
          }
 
-         // if (
-         //    (adults === 1 && children > 0 && children <= 3) ||
-         //    (adults === 2 && children > 3 && children <= 6) ||
-         //    (adults === 3 && children > 6 && children <= 9) ||
-         //    (adults === 4 && children > 9 && children <= 12)
-         // ) {
-         //    debugger;
-         //    setButtonReduceAdults(true);
-         // } else {
-         //    setButtonReduceAdults(false);
-         // }
-
          if (babies + 1 <= adults) {
             setMaxBabies(adults);
          } else {
             setMaxBabies(0);
          }
-
-         // if (adults > 0 && babies === 0 && children === 0) {
-         //    setButtonReduceAdults(false);
-         // }
       }
    }, [adults, children, babies]);
 

@@ -5,6 +5,7 @@ import InputList from "./components/InputList/InputList";
 import Promo from "./components/Promo/Promo";
 import 'react-calendar/dist/Calendar.css';
 import { PeopleCounter } from './components/PeopleCounter/PeopleCounter';
+import Autocomplete from './components/Autocomplete/Autocomplete';
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
          <InputList />
          <Promo />
          <PeopleCounter />
+         <Autocomplete />
       </div>
    );
 };
