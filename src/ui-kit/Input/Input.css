@@ -5,6 +5,7 @@
    border-left: 1px solid rgba(0, 0, 0, 0.2);
    max-width: 338px;
    height: 100%;
+   position: relative;
 }
 
 .InputContainer {

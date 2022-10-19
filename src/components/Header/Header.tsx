@@ -6,8 +6,6 @@ import main_logo from "../../images/main_logo.svg";
 import account_logo from "../../images/account_logo.svg";
 import Phone from "../../models/phone";
 const Header: FC = () => {
-
-
    const formattingNumber = ({ countryCode, number }: Phone) => {
       if (countryCode === "+7") {
          return (

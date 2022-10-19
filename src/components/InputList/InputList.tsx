@@ -6,6 +6,7 @@ import moon from "../../images/moon.svg";
 import user from "../../images/user.svg";
 import Button from "../../ui-kit/Button/Button";
 import DatePicker from "../DatePicker/DatePicker";
+import Autocomplete from "../Autocomplete/Autocomplete";
 
 const InputList: FC = () => {
    const [city, setCity] = useState<string>("");
@@ -48,13 +49,7 @@ const InputList: FC = () => {
 
    return (
       <form className="InputList" onSubmit={handleSubmit}>
-         <Input
-            img={mapPin}
-            labels="Departure city"
-            value={city}
-            isDate={false}
-            onChange={handleChangeCity}
-         />
+         <Autocomplete onChange={setCity}/>
          <DatePicker
             onChange={setInputValue}
             setNumberOfDays={setNumberOfDays}

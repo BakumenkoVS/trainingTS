@@ -1,4 +1,4 @@
-import React, { FC,  } from "react";
+import React, { FC } from "react";
 import { CounterProps } from "./types";
 import { styles } from "./Counter.styles";
 
@@ -10,14 +10,6 @@ const Counter: FC<CounterProps> = ({
    min = 0,
    max = 15,
 }) => {
-   // useEffect(() => {
-   //    if (min >= value) {
-   //       setButtonReduce?.(true);
-   //    } else {
-   //       setButtonReduce?.(false);
-   //    }
-   // }, [][value]);
-
    const increase = () => {
       onChange(value + 1);
    };

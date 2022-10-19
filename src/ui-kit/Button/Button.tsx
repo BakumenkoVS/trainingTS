@@ -4,15 +4,15 @@ import { ButtonProps } from "./Button.types";
 
 const Button: FC<ButtonProps> = ({
    name,
-   type = 'submit',
+   type = "submit",
    onClick,
-   loading ='false',
+   loading = "false",
    children,
    design,
 }) => {
    return (
       <button className={design} type={type} onClick={onClick} name={name}>
-         { children}
+         {children}
       </button>
    );
 };

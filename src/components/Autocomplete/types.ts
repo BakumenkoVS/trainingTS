@@ -1,1 +1,3 @@
-export interface AutocompleteProps {}
+export interface AutocompleteProps {
+    onChange: (value: string) => void;
+}

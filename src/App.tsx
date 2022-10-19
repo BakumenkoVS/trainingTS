@@ -18,7 +18,6 @@ const App = () => {
          <InputList />
          <Promo />
          <PeopleCounter />
-         <Autocomplete />
       </div>
    );
 };
